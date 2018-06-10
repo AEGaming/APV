@@ -1,2 +1,2 @@
 # Adventure-On-Planet-Valron
-A video created by AEGaming.
+A video game created by AEGaming.
