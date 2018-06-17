@@ -58,6 +58,16 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		while (running == true) {
+			try {
+				FileInputStream fis = new FileInputStream("/res/music/background.mp3");
+			  	Player mp3 = new Player(fis);
+				
+				playMP3.play();
+				
+			} catch(Exception e) {
+				System.out.println(e);
+			}
+			
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
