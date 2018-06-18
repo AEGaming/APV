@@ -6,10 +6,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 
 import javax.swing.JFrame;
 
 import com.apv.main.graphics.Screen;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -58,15 +62,10 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		while (running == true) {
-			try {
-				FileInputStream fis = new FileInputStream("/res/music/background.mp3");
-			  	Player mp3 = new Player(fis);
-				
-				playMP3.play();
-				
-			} catch(Exception e) {
-				System.out.println(e);
-			}
+			String location = "/res/music/background";
+			Media hit = new Media(new File(location).toURI().toString());
+			MediaPlayer mp = new MediaPlayer(hit);
+			mp.play();
 			
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
