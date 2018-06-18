@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
 import com.apv.main.graphics.Screen;
@@ -66,7 +69,7 @@ public class Game extends Canvas implements Runnable {
 			Media media = new Media(new File(location).toURI().toString());
 			MediaPlayer mp = new MediaPlayer(media);
 			mp.play();
-			
+
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
@@ -119,5 +122,17 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 
 		game.start();
+	}
+
+	public void playSound() {
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/music/background.mp3").getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		} catch (Exception ex) {
+			System.out.println("Error with playing sound.");
+			ex.printStackTrace();
+		}
 	}
 }
