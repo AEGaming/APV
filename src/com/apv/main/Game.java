@@ -63,8 +63,8 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
 		while (running == true) {
 			String location = "/res/music/background";
-			Media hit = new Media(new File(location).toURI().toString());
-			MediaPlayer mp = new MediaPlayer(hit);
+			Media media = new Media(new File(location).toURI().toString());
+			MediaPlayer mp = new MediaPlayer(media);
 			mp.play();
 			
 			long now = System.nanoTime();
