@@ -7,16 +7,20 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
 import com.apv.main.graphics.Screen;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -112,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Game game = new Game();
 		game.frame.setResizable(false);
 		game.frame.add(game);
@@ -122,17 +126,5 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 
 		game.start();
-	}
-
-	public void playSound() {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/music/background.mp3").getAbsoluteFile());
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
-			clip.start();
-		} catch (Exception ex) {
-			System.out.println("Error with playing sound.");
-			ex.printStackTrace();
-		}
 	}
 }
