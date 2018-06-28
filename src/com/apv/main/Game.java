@@ -3,32 +3,23 @@ package com.apv.main;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.swing.JFrame;
 
 import com.apv.main.graphics.Screen;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
-
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
-	public static int width = 300;
-	public static int height = width / 16 * 9;
+	public static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+	public static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 	public static int scale = 3;
-	public static String title = "ADVENTURE ON PLANEL VALRON";
+	public static String title = "SCOUT MASTER BISHAW";
 
 	private Thread thread;
 	private JFrame frame;
@@ -69,11 +60,6 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		while (running == true) {
-			String location = "/res/music/background";
-			Media media = new Media(new File(location).toURI().toString());
-			MediaPlayer mp = new MediaPlayer(media);
-			mp.play();
-
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
@@ -118,13 +104,13 @@ public class Game extends Canvas implements Runnable {
 
 	public static void main(String[] args) throws IOException {
 		Game game = new Game();
+		game.frame.setUndecorated(true);
 		game.frame.setResizable(false);
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
-
+		
 		game.start();
 	}
 }

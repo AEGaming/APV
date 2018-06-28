@@ -1,17 +1,24 @@
 package com.apv.main.graphics;
 
+import java.util.Random;
+
 public class Screen {
 
 	private int width, height;
 	public int[] pixels;
-
-	int xtime = 100, ytime = 50;
-	int counter = 0;
+	
+	public int[] tiles = new int[64 * 64];
+	
+	private Random random = new Random();
 
 	public Screen(int width, int height) {
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
+		
+		for (int i = 0; i < 64 * 64; i++) {
+			tiles[i] = random.nextInt(0xFFFFFF);
+		}
 	}
 
 	public void clear() {
@@ -21,18 +28,12 @@ public class Screen {
 	}
 
 	public void render() {
-		counter++;
-		if (counter % 100 == 0)
-			xtime--;
-		if (counter % 100 == 0)
-			ytime--;
-
 		for (int y = 0; y < height; y++) {
-			if (ytime < 0 || ytime >= height)
-				break;
+			if (y < 0 || y >= height) break;
 			for (int x = 0; x < width; x++) {
-				if (xtime < 0 || xtime >= width)
-					break;
+				if (x < 0 || x >= width) break;
+				int tileIndex = (x >> 4) + (y >> 4) * 64;
+				pixels[x + y * width] = tiles[tileIndex];
 			}
 		}
 	}
