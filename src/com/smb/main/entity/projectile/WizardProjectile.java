@@ -1,17 +1,20 @@
 package com.smb.main.entity.projectile;
 
 import com.smb.main.entity.Spawner.ParticleSpawner;
+import com.smb.main.entity.mob.Player;
 import com.smb.main.graphics.Screen;
 import com.smb.main.graphics.Sprite;
 
-public class WizardProjectile extends Projectile{
+public class WizardProjectile extends Projectile {
 
-	public static final int FIRE_RATE = 8; //Higher is slower
+	public static final int FIRE_RATE = 20; 
+	
+	Player p = new Player(null);
 	
 	public WizardProjectile(double x, double y, double dir) {
 		super(x, y, dir);
-		range = random.nextInt(50) + 200;
-		speed = 3;
+		range = 200;
+		speed = 15;
 		damage = 20;
 		sprite = Sprite.projectile_wizard;
 		nx = speed * Math.cos(angle);
@@ -22,6 +25,8 @@ public class WizardProjectile extends Projectile{
 		if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 4)) {
 			level.add(new ParticleSpawner((int)x, (int)y, 44, 50, level));
 			remove();
+			p.health -= 20;
+			System.out.println(p.health);
 		}
 		move();
 	}

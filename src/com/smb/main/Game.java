@@ -19,16 +19,12 @@ import com.smb.main.level.Level;
 import com.smb.main.level.TileCoordinate;
 
 public class Game extends Canvas implements Runnable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private static int width = 300;
 	private static int height = 168;
 	private static int scale = 3;
-	public String title = "Rain";
-	
+	public String title = "Scout Master Bishaw!";
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
@@ -89,7 +85,6 @@ public class Game extends Canvas implements Runnable{
 		final double ns = 1000000000.0 / 60.0;
 		double delta = 0;
 		int frames = 0;
-		int updates = 0;
 		requestFocus();
 		while (running) {
 			long now = System.nanoTime();
@@ -97,7 +92,6 @@ public class Game extends Canvas implements Runnable{
 			lastTime = now;
 			while (delta >= 1) {
 				update();
-				updates++;
 				delta--;
 			}
 			render();
@@ -105,9 +99,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				//System.out.println(updates + " ups, " + frames + " fps");
-				frame.setTitle(title + "  |  " + (updates + " ups, " + frames + " fps"));
-				updates = 0;
+				frame.setTitle(title + "  |  " + (frames + " FPS"));
 				frames = 0;
 			}
 		}
@@ -139,8 +131,6 @@ public class Game extends Canvas implements Runnable{
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Verdana", 0, 50));
-		//g.fillRect(Mouse.getX() - 32, Mouse.getY() - 32, 64, 64);
-		//g.drawString("Button: " + Mouse.getButton(),  80, 80);
 		g.dispose();
 		bs.show();
 	}
@@ -156,6 +146,5 @@ public class Game extends Canvas implements Runnable{
 		game.frame.setVisible(true);
 		
 		game.start();
-	}
-	
+	}	
 }

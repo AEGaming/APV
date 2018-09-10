@@ -90,9 +90,6 @@ public class Level {
 		return projectiles;
 	}
 	
-	//private void time() {
-	//}
-	
 	public boolean tileCollision (int x, int y, int size, int xOffset, int yOffset) {
 		boolean solid = false;
 		for (int c = 0; c < 4; c++) {
@@ -131,7 +128,7 @@ public class Level {
 	
 	public void add(Entity e) {
 		e.init(this);
-		if (e instanceof Spawner) return; //particle spawners were getting added to entities list
+		if (e instanceof Spawner) return; 
 		if (e instanceof Particle) {
 			particles.add((Particle)e);
 		} else if (e instanceof Projectile) {
@@ -245,17 +242,12 @@ public class Level {
 		return result;
 	}
 	
-	// Grass = 0xFF00FF00
-	// Flower = 0xFFFFFF00
-	// Rock = 0xFF7F7F00
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
 		if (tiles[x + y * width] == Tile.col_spawn_floor) return Tile.spawn_floor;
 		if (tiles[x + y * width] == Tile.col_spawn_grass) return Tile.spawn_grass;
-		if (tiles[x + y * width] == Tile.col_spawn_hedge) return Tile.spawn_hedge;
 		if (tiles[x + y * width] == Tile.col_spawn_wall1) return Tile.spawn_wall1;
 		if (tiles[x + y * width] == Tile.col_spawn_wall2) return Tile.spawn_wall2;
-		if (tiles[x + y * width] == Tile.col_spawn_water) return Tile.spawn_water;
 		return Tile.voidTile;
 	}
 }

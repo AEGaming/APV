@@ -1,6 +1,5 @@
 package com.smb.main.entity.mob;
 
-
 import com.smb.main.entity.Entity;
 import com.smb.main.entity.projectile.Projectile;
 import com.smb.main.entity.projectile.WizardProjectile;
@@ -65,7 +64,7 @@ public abstract class Mob extends Entity{
 	
 	public abstract void update();
 	
-	protected void shoot(double x, double y, double dir) {
+	protected void shoot(double x, double y, double dir, int fireRate) {
 		Projectile p = new WizardProjectile(x, y, dir);
 		level.add(p);
 	}
@@ -80,12 +79,10 @@ public abstract class Mob extends Entity{
 			if (c % 2 == 0) ix = (int) Math.floor(xt);
 			if (c / 2 == 0) iy = (int) Math.floor(yt);
 			if (level.getTile(ix, iy).solid()) solid = true;
-		}
-		
+		}	
 		return solid;
 	}
 	
 	public void render(Screen screen) {
 	}
-
 }

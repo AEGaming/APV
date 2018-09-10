@@ -2,9 +2,7 @@ package com.smb.main.graphics;
 
 import java.util.Random;
 
-import com.smb.main.entity.mob.Chaser;
 import com.smb.main.entity.mob.Mob;
-import com.smb.main.entity.mob.Star;
 import com.smb.main.entity.projectile.Projectile;
 import com.smb.main.level.tile.Tile;
 
@@ -27,7 +25,6 @@ public class Screen {
 		
 		for (int i = 0; i < MAP_SIZE* MAP_SIZE; i++) {
 			tiles[i] = random.nextInt(0xffffff);
-			
 		}
 	}
 
@@ -107,8 +104,6 @@ public class Screen {
 				if (xa < -32 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int col = mob.getSprite().pixels[xs + ys * 32];
-				if ((mob instanceof Chaser) && col == 0xff472bbf) col = 0xffba0015;
-				if ((mob instanceof Star) && col == 0xff472bbf) col = 0xffE8E83A;
 				if (col != 0xFFFF00FF) pixels[xa + ya * width] = col;
 			}
 		}
