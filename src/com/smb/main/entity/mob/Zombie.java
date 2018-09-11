@@ -16,6 +16,7 @@ public class Zombie extends Mob {
 	private double enemyRange = 85;
 	private Player player = Game.getPlayer();
 	private int counter = 0;
+	public int health;
 
 	public Zombie(int x, int y) {
 		this.x = x;
@@ -80,7 +81,8 @@ public class Zombie extends Mob {
 			if (ep.isRemoved())
 				level.getProjectiles().remove(i);
 			if (ep.x == x && ep.x == y) {
-				System.out.println("Hit!");
+			    health -= 10;
+			    level.getProjectiles().remove(i);
 			}
 		}
 	}

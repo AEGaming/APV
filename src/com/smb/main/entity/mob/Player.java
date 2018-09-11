@@ -67,7 +67,7 @@ public class Player extends Mob {
 			if (p.x == x && p.y == y) {
 			    stringHealth = Integer.toString(health);
 			    health -= 10;
-			    level.getProjectiles().remove(i)
+			    level.getProjectiles().remove(i);
 			}
 		}
 	}
