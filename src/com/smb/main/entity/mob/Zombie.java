@@ -82,10 +82,9 @@ public class Zombie extends Mob {
 			Projectile ep = level.getProjectiles().get(i);
 			if (ep.isRemoved())
 				level.getProjectiles().remove(i);
-			if (ep.x == x && ep.x == y) {
+			if (ep.x == x && ep.y == y) {
 			    health -= 10;
 			    level.getProjectiles().remove(i);
-			    System.out.println(health);
 			}
 		}
 	}
