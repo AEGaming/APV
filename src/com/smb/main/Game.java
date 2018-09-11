@@ -139,10 +139,9 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Verdana", 0, 20));
-		g.drawString(title, 5, 20);
-		g.drawString(player.stringHealth, 100, 100);
+		g.setColor(Color.RED);
+		g.setFont(new Font("Arial", 0, 20));
+		g.drawString(player.stringHealth, 5, 20);
 		g.dispose();
 		bs.show();
 	}
