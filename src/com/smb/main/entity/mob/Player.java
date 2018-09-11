@@ -63,9 +63,13 @@ public class Player extends Mob {
 	private void clear() {
 		for (int i = 0; i < level.getProjectiles().size(); i++) {
 			Projectile p = level.getProjectiles().get(i);
-			if (p.isRemoved())
-				level.getProjectiles().remove(i);
+			if (p.isRemoved()) level.getProjectiles().remove(i);
+			if (p.x == x && p.y == y) {
+			    stringHealth = Integer.toString(health);
+			    health -= 10;
+			    level.getProjectiles().remove(i)
 			}
+		}
 	}
 
 	private void updateShooting() {
