@@ -1,11 +1,12 @@
-package com.smb.main.level.tile;
+package com.smb.main.level.tile.spawn;
 
 import com.smb.main.graphics.Screen;
 import com.smb.main.graphics.Sprite;
+import com.smb.main.level.tile.Tile;
 
-public class GrassTile extends Tile{
+public class SpawnGrassTile extends Tile{
 
-	public GrassTile(Sprite sprite) {
+	public SpawnGrassTile(Sprite sprite) {
 		super(sprite);
 	}
 	

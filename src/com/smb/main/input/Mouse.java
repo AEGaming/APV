@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class Mouse implements MouseListener, MouseMotionListener{
-
+public class Mouse implements MouseListener, MouseMotionListener {
+	
 	private static int mouseX = -1;
 	private static int mouseY = -1;
 	private static int mouseB = -1;
@@ -21,14 +21,9 @@ public class Mouse implements MouseListener, MouseMotionListener{
 	public static int getButton() {
 		return mouseB;
 	}
-	
+
 	public void mouseClicked(MouseEvent e) {
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
+		
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -36,8 +31,18 @@ public class Mouse implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		mouseB = -1; //Needed
+	}
+
+	public void mouseEntered(MouseEvent e) {
 		mouseB = -1;
 	}
+
+	
+	public void mouseExited(MouseEvent e) {
+		
+	}
+
 
 	public void mouseDragged(MouseEvent e) {
 		mouseX = e.getX();
@@ -48,6 +53,5 @@ public class Mouse implements MouseListener, MouseMotionListener{
 		mouseX = e.getX();
 		mouseY = e.getY();
 	}
-	
 
 }
