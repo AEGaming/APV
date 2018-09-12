@@ -11,8 +11,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import com.smb.main.entity.mob.Zombie;
 import com.smb.main.entity.mob.Player;
+import com.smb.main.entity.mob.Zombie;
 import com.smb.main.graphics.Screen;
 import com.smb.main.input.Keyboard;
 import com.smb.main.input.Mouse;
@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable {
 	private Keyboard key;
 	private Level level;
 	private static Player player;
-	private static Zombie enemy;
+	public static Zombie zombie;
 	private boolean running = false;
 
 	private Screen screen;
@@ -44,16 +44,16 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		TileCoordinate playerSpawn = new TileCoordinate(20, 67);
-		TileCoordinate enemySpawn = new TileCoordinate(19, 20);
+		TileCoordinate zombieSpawn = new TileCoordinate(19, 20);
 
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
-		enemy = new Zombie(enemySpawn.x(), enemySpawn.y());
+		zombie = new Zombie(zombieSpawn.x(), zombieSpawn.y());
 		player.init(level);
-		enemy.init(level);
+		zombie.init(level);
 
 		addKeyListener(key);
 
@@ -73,6 +73,10 @@ public class Game extends Canvas implements Runnable {
 
 	public static Player getPlayer() {
 		return player;
+	}
+	
+	public static Zombie getZombie() {
+		return zombie;
 	}
 
 	public synchronized void start() {
@@ -132,16 +136,19 @@ public class Game extends Canvas implements Runnable {
 		int yScroll = player.getY() - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
-		enemy.render(screen);
+		zombie.render(screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Arial", 0, 16));
+		g.drawString(title, getWindowWidth() / 2 - title.length() * 4, 15);
 		g.setColor(Color.RED);
-		g.setFont(new Font("Arial", 0, 20));
-		g.drawString(player.stringHealth, 5, 20);
+		g.setFont(new Font("Arial Black", 0, 24));
+		g.drawString("HP: " + player.strHealth, (getWindowWidth() / 2) - (player.strHealth.length() * 15), getWindowHeight() - 15);
 		g.dispose();
 		bs.show();
 	}
@@ -149,7 +156,7 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		key.update();
 		player.update();
-		enemy.update();
+		zombie.update();
 		level.update();
 	}
 
