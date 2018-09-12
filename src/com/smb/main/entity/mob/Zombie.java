@@ -8,6 +8,7 @@ import com.smb.main.graphics.Sprite;
 
 public class Zombie extends Mob {
 	
+	private Game game;
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
@@ -16,8 +17,9 @@ public class Zombie extends Mob {
 	private double enemyRange = 85;
 	private Player player = Game.getPlayer();
 	private int counter = 0;
-	public int health = 100;
 
+	private int health = 50;
+	
 	public Zombie(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -82,9 +84,9 @@ public class Zombie extends Mob {
 			Projectile ep = level.getProjectiles().get(i);
 			if (ep.isRemoved())
 				level.getProjectiles().remove(i);
-			if (ep.x == x && ep.y == y) {
-			    health -= 10;
-			    level.getProjectiles().remove(i);
+			if (ep.x == Game.getZombie().x && ep.y == Game.getZombie().y) {
+				health -= 10;
+				level.getProjectiles().remove(i);
 			}
 		}
 	}
