@@ -1,2 +1,2 @@
-# Adventure On Planet Valron (open source)
+# Scout Master Bishaw! (open source)
 A video game created by AEGaming.
