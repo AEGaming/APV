@@ -17,8 +17,8 @@ public class Player extends Mob {
 
 	private int fireRate = 0;
 	private int health = 100;
-	public String stringHealth = "100";
-	
+	public String strHealth = "100";
+
 	public Player(Keyboard input) {
 		this.input = input;
 	}
@@ -56,18 +56,19 @@ public class Player extends Mob {
 		}
 		clear();
 		updateShooting();
-		
-		if (health == 0) System.exit(0);
+
+		if (health == 0)
+			System.exit(0);
 	}
 
 	private void clear() {
 		for (int i = 0; i < level.getProjectiles().size(); i++) {
 			Projectile p = level.getProjectiles().get(i);
-			if (p.isRemoved()) level.getProjectiles().remove(i);
-			if (p.x == x && p.y == y) {
-			    stringHealth = Integer.toString(health);
-			    health -= 10;
-			    level.getProjectiles().remove(i);
+			if (p.isRemoved())
+				level.getProjectiles().remove(i);
+			if (p.x == Game.getPlayer().x && p.y == Game.getPlayer().y) {
+				health -= 10;
+				strHealth = Integer.toString(health);
 			}
 		}
 	}
